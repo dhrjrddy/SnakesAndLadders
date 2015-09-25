@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DBInventoryImp implements Inventory {
-
+ 
 	private static final String saveGameResults = "insert into game_results (GameId,Date,Winner) values(?,?,?)";
 	private static final String saveGameDetails = "insert into game_details (GameId,PlayerName,Position) values(?,?,?)";
 	private static final String deleteGame = "delete from game_results where GameId=?";

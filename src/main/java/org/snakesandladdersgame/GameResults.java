@@ -1,5 +1,5 @@
 package org.snakesandladdersgame;
-
+ 
 public class GameResults {
 
 	private String gameId; // Game Id
