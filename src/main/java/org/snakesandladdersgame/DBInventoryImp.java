@@ -19,9 +19,9 @@ public class DBInventoryImp implements Inventory {
 	private static final String gameResults = "select * from game_results";
 	private static final String gameResultDetails = "select PlayerName,Position from game_details where GameId=?";
 	private static final String rowCount = "rowcount";
-	private static final String GameId = "GameId";
-	private static final String Date = "Date";
-	private static final String Winner = "Winner";
+	private static final String gameId = "GameId";
+	private static final String date = "Date";
+	private static final String winner = "Winner";
 	private static final String playerName = "PlayerName";
 	private static final String position = "Position";
 
@@ -110,8 +110,8 @@ public class DBInventoryImp implements Inventory {
 					.prepareStatement(gameResults);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				gameResultsList.add(new GameResults(result.getString(GameId),
-						result.getString(Date), result.getString(Winner)));
+				gameResultsList.add(new GameResults(result.getString(gameId),
+						result.getString(date), result.getString(winner)));
 			}
 			statement.close();
 			connection.close();
