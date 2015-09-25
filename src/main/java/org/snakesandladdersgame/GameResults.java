@@ -2,9 +2,9 @@ package org.snakesandladdersgame;
 
 public class GameResults {
 
-	String gameId; // Game Id
-	String date; // Date on which game played
-	String winnerName; // Winner of the game.
+	private String gameId; // Game Id
+	private String date; // Date on which game played
+	private String winnerName; // Winner of the game.
 
 	/**
 	 *  Construct a new game result with given fields.

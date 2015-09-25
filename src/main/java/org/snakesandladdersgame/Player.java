@@ -1,8 +1,8 @@
 package org.snakesandladdersgame;
 
 public class Player {
-	int position; // Player position
-	String name; // Player name
+	private int position; // Player position
+	private String name; // Player name
 
 	// Construct a new player with given fields
 	public Player(int position, String name) {

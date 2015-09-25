@@ -122,7 +122,7 @@ public class DBInventoryImp implements Inventory {
 	}
 
 	public List<Player> gameResultDetails(String gameId) {
-		List<Player> GameDetailsList = new LinkedList<Player>();
+		List<Player> gameDetailsList = new LinkedList<Player>();
 		try {
 			Connection connection = DBConnection.getInstance().getConnection();
 			PreparedStatement statement = connection
@@ -130,7 +130,7 @@ public class DBInventoryImp implements Inventory {
 			statement.setString(1, gameId);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				GameDetailsList.add(new Player(result.getInt(position), result
+				gameDetailsList.add(new Player(result.getInt(position), result
 						.getString(playerName)));
 			}
 			statement.close();
@@ -138,7 +138,7 @@ public class DBInventoryImp implements Inventory {
 		} catch (SQLException e) {
 			System.out.println("Database Connection Error");
 		}
-		return GameDetailsList;
+		return gameDetailsList;
 	}
 
 }
