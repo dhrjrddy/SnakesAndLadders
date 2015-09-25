@@ -83,7 +83,7 @@ public class DBInventoryImp implements Inventory {
 			connection.commit();
 			connection.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Database Connection Error");
 		}
 	}
 
@@ -98,7 +98,7 @@ public class DBInventoryImp implements Inventory {
 			connection.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Database Connection Error");
 		}
 	}
 
@@ -116,7 +116,7 @@ public class DBInventoryImp implements Inventory {
 			statement.close();
 			connection.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Database Connection Error");
 		}
 		return gameResultsList;
 	}
@@ -136,7 +136,7 @@ public class DBInventoryImp implements Inventory {
 			statement.close();
 			connection.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Database Connection Error");
 		}
 		return GameDetailsList;
 	}
