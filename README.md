@@ -17,7 +17,7 @@ Include this maven dependency in your pom:
 	<groupId>commons-dbcp</groupId>
 	<artifactId>commons-dbcp</artifactId>
 	<version>1.2.2</version>
-	</dependency>
+</dependency>
 ```
 
 In DBConnection.java set the following parameters.
