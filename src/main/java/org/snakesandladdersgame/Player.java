@@ -1,5 +1,5 @@
 package org.snakesandladdersgame;
- 
+
 public class Player {
 	private int position; // Player position
 	private String name; // Player name

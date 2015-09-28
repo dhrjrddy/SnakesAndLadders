@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.Map;
 
 public class DBInventoryImp implements Inventory {
- 
+
 	private static final String saveGameResults = "insert into game_results (GameId,Date,Winner) values(?,?,?)";
 	private static final String saveGameDetails = "insert into game_details (GameId,PlayerName,Position) values(?,?,?)";
 	private static final String deleteGame = "delete from game_results where GameId=?";
 	private static final String gameCount = "select count(*) as rowcount from game_results";
-	private static final String gameResultsTable = "CREATE  TABLE IF NOT EXISTS `snakesandladders`.`game_results` (`GameId` VARCHAR(20) NOT NULL ,`Date` VARCHAR(20) NULL ,`Winner` VARCHAR(20) NULL ,PRIMARY KEY (`GameId`) )";
-	private static final String gameDetailsTable = "CREATE  TABLE IF NOT EXISTS `snakesandladders`.`game_details` ( `GameId` VARCHAR(20) NOT NULL ,`PlayerName` VARCHAR(20) NULL ,`Position` VARCHAR(20) NULL ,INDEX `GameId` (`GameId` ASC) , CONSTRAINT `GameId` FOREIGN KEY (`GameId` ) REFERENCES `snakesandladders`.`game_results` (`GameId` ) ON DELETE CASCADE ON UPDATE CASCADE);";
+	private static final String gameResultsTable = "CREATE  TABLE IF NOT EXISTS game_results (`GameId` VARCHAR(20) NOT NULL ,`Date` VARCHAR(20) NULL ,`Winner` VARCHAR(20) NULL ,PRIMARY KEY (`GameId`) )";
+	private static final String gameDetailsTable = "CREATE  TABLE IF NOT EXISTS game_details ( `GameId` VARCHAR(20) NOT NULL ,`PlayerName` VARCHAR(20) NULL ,`Position` VARCHAR(20) NULL ,INDEX `GameId` (`GameId` ASC) , CONSTRAINT `GameId` FOREIGN KEY (`GameId` ) REFERENCES `snakesandladders`.`game_results` (`GameId` ) ON DELETE CASCADE ON UPDATE CASCADE);";
 	private static final String gameResults = "select * from game_results";
 	private static final String gameResultDetails = "select PlayerName,Position from game_details where GameId=?";
 	private static final String rowCount = "rowcount";
@@ -28,17 +28,15 @@ public class DBInventoryImp implements Inventory {
 	public DBInventoryImp() {
 		try {
 			Connection connection = DBConnection.getInstance().getConnection();
-			PreparedStatement gameResultsStatement = connection
-					.prepareStatement(gameResultsTable);
-			gameResultsStatement.execute();
-			PreparedStatement gameDetailsStatement = connection
-					.prepareStatement(gameDetailsTable);
+			PreparedStatement gameResultsStatement = connection.prepareStatement(gameResultsTable);
+			PreparedStatement gameDetailsStatement = connection.prepareStatement(gameDetailsTable);
 			gameResultsStatement.execute();
 			gameDetailsStatement.execute();
+			gameResultsStatement.close();
 			gameDetailsStatement.close();
 			connection.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Database Connection Error");
 		}
 	}
 
@@ -46,31 +44,25 @@ public class DBInventoryImp implements Inventory {
 		try {
 			Connection connection = DBConnection.getInstance().getConnection();
 			connection.setAutoCommit(false);
-			PreparedStatement statement = connection
-					.prepareStatement(gameCount);
+			PreparedStatement statement = connection.prepareStatement(gameCount);
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();
 			String gameId = "Game" + (resultSet.getInt(rowCount) + 1);
 			// Generating a gameId for every game.
 
-			PreparedStatement gameResultsStatement = connection
-					.prepareStatement(saveGameResults);
+			PreparedStatement gameResultsStatement = connection.prepareStatement(saveGameResults);
 			CurrentDate date = new CurrentDate();
 			gameResultsStatement.setString(1, gameId);
 			gameResultsStatement.setString(2, date.getDate());
-			PreparedStatement gameDetailsStatement = connection
-					.prepareStatement(saveGameDetails);
+			PreparedStatement gameDetailsStatement = connection.prepareStatement(saveGameDetails);
 			for (Integer key : playerList.keySet()) {
 				if (playerList.get(key).getPosition() == 100) {
 					// Check the winner and then register the game results.
-					gameResultsStatement.setString(3, playerList.get(key)
-							.getName());
+					gameResultsStatement.setString(3, playerList.get(key).getName());
 				}
 				gameDetailsStatement.setString(1, gameId);
-				gameDetailsStatement
-						.setString(2, playerList.get(key).getName());
-				gameDetailsStatement.setInt(3, playerList.get(key)
-						.getPosition());
+				gameDetailsStatement.setString(2, playerList.get(key).getName());
+				gameDetailsStatement.setInt(3, playerList.get(key).getPosition());
 				gameDetailsStatement.addBatch();
 			}
 			statement.close();
@@ -81,6 +73,7 @@ public class DBInventoryImp implements Inventory {
 			gameResultsStatement.close();
 			gameDetailsStatement.close();
 			connection.commit();
+			connection.setAutoCommit(true);
 			connection.close();
 		} catch (SQLException e) {
 			System.out.println("Database Connection Error");
@@ -90,8 +83,7 @@ public class DBInventoryImp implements Inventory {
 	public void delete(String gameId) {
 		try {
 			Connection connection = DBConnection.getInstance().getConnection();
-			PreparedStatement statement = connection
-					.prepareStatement(deleteGame);
+			PreparedStatement statement = connection.prepareStatement(deleteGame);
 			statement.setString(1, gameId);
 			statement.execute();
 			statement.close();
@@ -106,12 +98,11 @@ public class DBInventoryImp implements Inventory {
 		List<GameResults> gameResultsList = new LinkedList<GameResults>();
 		try {
 			Connection connection = DBConnection.getInstance().getConnection();
-			PreparedStatement statement = connection
-					.prepareStatement(gameResults);
+			PreparedStatement statement = connection.prepareStatement(gameResults);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				gameResultsList.add(new GameResults(result.getString(gameId),
-						result.getString(date), result.getString(winner)));
+				gameResultsList.add(
+						new GameResults(result.getString(gameId), result.getString(date), result.getString(winner)));
 			}
 			statement.close();
 			connection.close();
@@ -125,13 +116,11 @@ public class DBInventoryImp implements Inventory {
 		List<Player> gameDetailsList = new LinkedList<Player>();
 		try {
 			Connection connection = DBConnection.getInstance().getConnection();
-			PreparedStatement statement = connection
-					.prepareStatement(gameResultDetails);
+			PreparedStatement statement = connection.prepareStatement(gameResultDetails);
 			statement.setString(1, gameId);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				gameDetailsList.add(new Player(result.getInt(position), result
-						.getString(playerName)));
+				gameDetailsList.add(new Player(result.getInt(position), result.getString(playerName)));
 			}
 			statement.close();
 			connection.close();

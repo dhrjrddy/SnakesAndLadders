@@ -152,7 +152,5 @@ public class ClientTest {
 		assertTrue(Arrays.asList(game1).contains(inventory.gameResultDetails("Game1").get(0).getName()));
 		assertFalse(inventory.gameResultDetails("Game1").get(0).getName().equals("name5"));
 		
-		inventory.delete("Game2");
-		assertEquals(inventory.allGameResults().size(), 1);
 	}
 }

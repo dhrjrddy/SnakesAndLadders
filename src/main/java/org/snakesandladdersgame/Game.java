@@ -4,8 +4,8 @@ import java.util.Map;
 
 public class Game {
 
-	private Snake snakePosition;
-	private Ladder ladderPosition;
+	private static Snake snakePosition;
+	private static Ladder ladderPosition;
 	private static final int totalPos = 100; // Declaring total board size to
 												// 100.
 
@@ -16,17 +16,15 @@ public class Game {
 
 	public void board(Map<Integer, Player> playerList) {
 
-		int playerturn = 0; // First player starts the game.
+		int playerTurn = 0; // First player starts the game.
 		Dice dice = new Dice();
 		while (true) {
 			int rollDieScore = dice.roll(); // gets dice score
-			Player player = playerList.get(playerturn);
+			Player player = playerList.get(playerTurn);
 			int totalScore = player.getPosition() + rollDieScore;
 			if (totalScore == totalPos) {
 				// Checks if player reached maximum board size.
 
-				System.out.println("User : " + player.getName() + " got "
-						+ rollDieScore + ".WINNER!!");
 				player.setPosition(totalScore);
 				break;
 			} else if (totalScore > totalPos) {
@@ -50,13 +48,13 @@ public class Game {
 				player.setPosition(totalScore);
 			}
 
-			playerturn++; // Increments the players turn for all players to get
+			playerTurn++; // Increments the players turn for all players to get
 							// chance in order.
-			if (playerturn == playerList.size()) {
-				// Checks whether all players go chance and then sets the turn
-				// to first player.
+			if (playerTurn == playerList.size()) {
+				// Checks whether all players got a chance and then sets the
+				// turn to first player.
 
-				playerturn = 0;
+				playerTurn = 0;
 			}
 		}
 	}

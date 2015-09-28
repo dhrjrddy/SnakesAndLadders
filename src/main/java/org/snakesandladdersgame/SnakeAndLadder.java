@@ -15,11 +15,12 @@ package org.snakesandladdersgame;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class SnakeAndLadder {
 
-	private Map<Integer, Player> playerList; // Contains all players and their
-												// positions.
+	private static Map<Integer, Player> playerList; // Contains all players and
+													// their positions.
 	private Inventory gameResults;
 
 	public SnakeAndLadder() {
@@ -56,8 +57,7 @@ public class SnakeAndLadder {
 		for (int playerNum = 0; playerNum < totalPlayers; playerNum++) {
 			// initializing player position to 0.
 
-			Player player = new Player(startPosition, "Player"
-					+ (playerNum + 1));
+			Player player = new Player(startPosition, "Player" + (playerNum + 1));
 			playerList.put(playerNum, player);
 		}
 	}
@@ -81,20 +81,32 @@ public class SnakeAndLadder {
 	public static void main(String args[]) {
 		SnakeAndLadder snakeAndLadder = new SnakeAndLadder();
 		DisplayResults display = new DisplayResults();
-		int totalPlayers = 3;
-		snakeAndLadder.startGame(totalPlayers);
-		display.showAllGamesResults(snakeAndLadder.allGamesResults());
-		display.showGameDetails(snakeAndLadder.gameDetails("Game1"));
-		totalPlayers = 4;
-		snakeAndLadder.startGame(totalPlayers);
-		display.showAllGamesResults(snakeAndLadder.allGamesResults());
-		display.showGameDetails(snakeAndLadder.gameDetails("Game1"));
-		totalPlayers = 5;
-		snakeAndLadder.startGame(totalPlayers);
-		display.showAllGamesResults(snakeAndLadder.allGamesResults());
-		display.showGameDetails(snakeAndLadder.gameDetails("Game1"));
-		display.showGameDetails(snakeAndLadder.gameDetails("Game2"));
-		display.showGameDetails(snakeAndLadder.gameDetails("Game3"));
+		Scanner input = new Scanner(System.in);
+		int userChoice;
+		do {
+			System.out.println("Select the option:");
+			System.out.println("1. Play new game.");
+			System.out.println("2. Display all game results.");
+			System.out.println("3. Display game details.");
+			userChoice = input.nextInt();
+			switch (userChoice) {
+			case 1:
+				System.out.println("Enter player count...");
+				int totalPlayers = input.nextInt();
+				snakeAndLadder.startGame(totalPlayers);
+				display.showWinner(playerList);
+				break;
+			case 2:
+				display.showAllGamesResults(snakeAndLadder.allGamesResults());
+				break;
+			case 3:
+				System.out.println("Enter game id...");
+				display.showGameDetails(snakeAndLadder.gameDetails(input.next()));
+				break;
+			default:
+				System.exit(1);
+			}
+		} while (true);
 
 	}
 

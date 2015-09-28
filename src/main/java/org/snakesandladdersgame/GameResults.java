@@ -1,5 +1,5 @@
 package org.snakesandladdersgame;
- 
+
 public class GameResults {
 
 	private String gameId; // Game Id
@@ -7,7 +7,8 @@ public class GameResults {
 	private String winnerName; // Winner of the game.
 
 	/**
-	 *  Construct a new game result with given fields.
+	 * Construct a new game result with given fields.
+	 * 
 	 * @param gameId
 	 * @param date
 	 * @param winnerName
@@ -19,7 +20,7 @@ public class GameResults {
 	}
 
 	/**
-	 *  @return game id
+	 * @return game id
 	 */
 	public String getGameId() {
 		return gameId;

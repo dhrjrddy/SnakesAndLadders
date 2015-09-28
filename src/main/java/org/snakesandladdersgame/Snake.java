@@ -5,8 +5,9 @@ import java.util.HashMap;
 public class Snake {
 	// This HashMap contains all the snake positions.
 	private HashMap<Integer, Integer> snakePositions;
+
 	/**
-	 * Constructor initializes all the snake starting and end positions.
+	 * Constructor initializes all the snake start and end positions.
 	 */
 	public Snake() {
 		snakePositions = new HashMap<Integer, Integer>();
@@ -20,6 +21,7 @@ public class Snake {
 
 	/**
 	 * Returns the end position of the snake.
+	 * 
 	 * @param startingPosition
 	 * @return ending position of snake.
 	 */
@@ -32,7 +34,7 @@ public class Snake {
 	 * there.
 	 */
 	public boolean isSnake(int snakePosition) {
-			return snakePositions.containsKey(snakePosition);
+		return snakePositions.containsKey(snakePosition);
 	}
 
 }

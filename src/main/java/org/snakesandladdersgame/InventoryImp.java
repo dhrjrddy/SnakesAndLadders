@@ -28,8 +28,7 @@ public class InventoryImp implements Inventory {
 			if (playerList.get(key).getPosition() == 100) {
 				// Check the winner and then register the game results.
 
-				gameResults.add(new GameResults(gameId, date.getDate(),
-						playerList.get(key).getName()));
+				gameResults.add(new GameResults(gameId, date.getDate(), playerList.get(key).getName()));
 			}
 		}
 
@@ -37,8 +36,7 @@ public class InventoryImp implements Inventory {
 
 	public void delete(String gameId) {
 		gameResultDetails.remove(gameId);
-		for (Iterator<GameResults> game = gameResults.iterator(); game
-				.hasNext();) {
+		for (Iterator<GameResults> game = gameResults.iterator(); game.hasNext();) {
 			GameResults myGame = (GameResults) game.next();
 			if (myGame.getGameId().equals(gameId)) {
 				gameResults.remove(myGame);
@@ -53,10 +51,9 @@ public class InventoryImp implements Inventory {
 	}
 
 	public List<Player> gameResultDetails(String gameId) {
-		List<Player> gameDetailsList=new LinkedList<Player>();  
+		List<Player> gameDetailsList = new LinkedList<Player>();
 		if (gameResultDetails.get(gameId) != null) {
-			for (Player player : gameResultDetails.get(gameId)
-					.values()) {
+			for (Player player : gameResultDetails.get(gameId).values()) {
 				gameDetailsList.add(player);
 			}
 		} else {
