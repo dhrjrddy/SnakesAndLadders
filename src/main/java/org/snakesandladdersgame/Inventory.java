@@ -12,8 +12,8 @@ public interface Inventory {
 	 * positions in hash map.
 	 * 
 	 * @param playerList
-	 * @throws SQLException 
-	 * @throws IOException 
+	 * @throws SQLException
+	 * @throws IOException
 	 */
 	public void save(Map<Integer, Player> playerList) throws SQLException, IOException;
 
@@ -21,8 +21,8 @@ public interface Inventory {
 	 * This method takes gameId as input and delete the game details.
 	 * 
 	 * @param gameId
-	 * @throws SQLException 
-	 * @throws IOException 
+	 * @throws SQLException
+	 * @throws IOException
 	 */
 	public void delete(String gameId) throws SQLException, IOException;
 
@@ -31,8 +31,8 @@ public interface Inventory {
 	 * when the game is played and winner of game.
 	 * 
 	 * @return all games and their results.
-	 * @throws SQLException 
-	 * @throws IOException 
+	 * @throws SQLException
+	 * @throws IOException
 	 */
 	public List<GameResults> allGameResults() throws SQLException, IOException;
 
@@ -41,8 +41,8 @@ public interface Inventory {
 	 * 
 	 * @param gameId
 	 * @return gameId detailed results.
-	 * @throws SQLException 
-	 * @throws IOException 
+	 * @throws SQLException
+	 * @throws IOException
 	 */
 	public List<Player> gameResultDetails(String gameId) throws SQLException, IOException;
 }

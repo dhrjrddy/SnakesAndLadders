@@ -32,8 +32,8 @@ public class SnakeAndLadder {
 
 	/**
 	 * @return list of game results
-	 * @throws SQLException 
-	 * @throws IOException 
+	 * @throws SQLException
+	 * @throws IOException
 	 */
 	public List<GameResults> allGamesResults() throws SQLException, IOException {
 		return gameResults.allGameResults();
@@ -43,8 +43,8 @@ public class SnakeAndLadder {
 	/**
 	 * @param gameId
 	 * @return list of input gameId details with player name and position.
-	 * @throws SQLException 
-	 * @throws IOException 
+	 * @throws SQLException
+	 * @throws IOException
 	 */
 	public List<Player> gameDetails(String gameId) throws SQLException, IOException {
 
@@ -73,8 +73,9 @@ public class SnakeAndLadder {
 	 * This method is responsible for starting the game and setting the total
 	 * players list. It will also call the game board and send the final results
 	 * to database.
-	 * @throws SQLException 
-	 * @throws IOException 
+	 * 
+	 * @throws SQLException
+	 * @throws IOException
 	 */
 	public void startGame(int totalPlayers) throws SQLException, IOException {
 		if (totalPlayers < 2) { // Stop game if total players is less than 2.

@@ -8,6 +8,8 @@ public class CurrentDate {
 
 	/**
 	 * This method returns date in String format.
+	 * 
+	 * @return current date and time
 	 */
 
 	public String getDate() {

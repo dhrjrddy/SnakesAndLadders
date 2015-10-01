@@ -29,7 +29,7 @@ public class DbInventoryImp implements Inventory {
 
 	public void save(Map<Integer, Player> playerList) throws SQLException, IOException {
 		Connection connection = null;
-		String gameId =null;
+		String gameId = null;
 		try {
 			connection = DbConnection.getInstance().getConnection();
 			connection.setAutoCommit(false);
@@ -99,8 +99,8 @@ public class DbInventoryImp implements Inventory {
 			while (result.next()) {
 				gameResultsList.add(
 						new GameResults(result.getString(GAME_ID), result.getString(DATE), result.getString(WINNER)));
-				log.info("Received list of games played Successfully");
 			}
+			log.info("Received list of games played Successfully");
 		} catch (SQLException e) {
 			log.error("Receiving list of games failed: " + e);
 			throw new SQLException("Receiving list of games failed: " + e);

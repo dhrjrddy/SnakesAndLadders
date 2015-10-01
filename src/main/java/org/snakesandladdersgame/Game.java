@@ -6,8 +6,8 @@ public class Game {
 
 	private static Snake snakePosition;
 	private static Ladder ladderPosition;
-	private static final int TOTAL_BOARD_SIZE = 100; // Declaring total board size to
-												// 100.
+	private static final int TOTAL_BOARD_SIZE = 100; // Declaring total board
+														// size to 100.
 
 	public Game() {
 		snakePosition = new Snake(); // Initializing Snake positions.

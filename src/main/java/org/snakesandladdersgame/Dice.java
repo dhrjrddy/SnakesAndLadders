@@ -18,9 +18,10 @@ public class Dice {
 	 * value to roll method.
 	 * 
 	 * @param min
-	 *            dice.
-	 * @param mac
-	 *            dice.
+	 *            dice score.
+	 * @param max
+	 *            dice score.
+	 * @return random result of the dice. 
 	 */
 	private int random(int min, int max) {
 		int result = (int) (min + Math.floor((max - min) * Math.random()));

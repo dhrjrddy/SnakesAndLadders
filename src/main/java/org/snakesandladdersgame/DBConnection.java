@@ -19,7 +19,7 @@ public class DbConnection {
 	private static final String URL = "db_url";
 	private static Logger log = Logger.getLogger(DbInventoryImp.class);
 
-	private DbConnection() throws IOException  {
+	private DbConnection() throws IOException {
 		Properties prop = new Properties();
 		String fileName = "dbproperties.config";
 		InputStream input = null;
@@ -36,10 +36,10 @@ public class DbConnection {
 			log.error("Failed to extract data from file: " + e);
 			throw new IOException(e);
 		}
-		
+
 	}
 
-	public static DbConnection getInstance() throws IOException  {
+	public static DbConnection getInstance() throws IOException {
 		if (dbConnection == null) {
 			dbConnection = new DbConnection();
 			return dbConnection;
