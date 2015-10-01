@@ -100,10 +100,10 @@ public class DbInventoryImp implements Inventory {
 				gameResultsList.add(
 						new GameResults(result.getString(GAME_ID), result.getString(DATE), result.getString(WINNER)));
 			}
-			log.info("Received list of games played Successfully");
+			log.info("Returned list of games played Successfully");
 		} catch (SQLException e) {
-			log.error("Receiving list of games failed: " + e);
-			throw new SQLException("Receiving list of games failed: " + e);
+			log.error("Returning list of games failed: " + e);
+			throw new SQLException("Returning list of games failed: " + e);
 		} finally {
 			if (connection != null) {
 				connection.close();
@@ -123,10 +123,10 @@ public class DbInventoryImp implements Inventory {
 			while (result.next()) {
 				gameDetailsList.add(new Player(result.getInt(POSITION), result.getString(PLAYER_NAME)));
 			}
-			log.info("Received " + gameId + " results Successfully");
+			log.info("Returned " + gameId + " results Successfully");
 		} catch (SQLException e) {
-			log.error("Receiving " + gameId + " results failed: " + e);
-			throw new SQLException("Receiving " + gameId + " results failed: " + e);
+			log.error("Returning " + gameId + " results failed: " + e);
+			throw new SQLException("Returning " + gameId + " results failed: " + e);
 		} finally {
 			if (connection != null) {
 				connection.close();
