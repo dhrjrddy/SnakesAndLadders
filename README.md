@@ -11,31 +11,22 @@ Simple Snakes and Ladders Game Implemented in Java and Maven and perforemd Junit
 
 ##Getting started
 
-Include this maven dependency in your pom:
-``` javascript
-<dependency>
-	<groupId>commons-dbcp</groupId>
-	<artifactId>commons-dbcp</artifactId>
-	<version>1.2.2</version>
-</dependency>
-```
+Run the initdb.sql file present in the src/main/resources/ folder before running the application and tests. This file creates a database schema snakesandladders and 3 tables game_results, game_details and logs.
 
-In DBConnection.java set the following parameters.
+The database configuration details are present in dbproperties.CONFIG file in src/main/resources/ folder. Change the driver, username, password and url if required.
 ``` javascript
-setUsername("");
-setPassword("");
-setUrl("jdbc:mysql://localhost/(DB schema name)");
+db_driver=
+db_user=
+db_password=
+db_url=jdbc:
 ```
-
-The following database tables are auto-generated when the project is executed for first time.
+Logs are created to record events and are stored in the database. The database configuration details for log4j are present in log4j.PROPERTIES file in src/main/resources/ folder. Change the driver, username, password and url if required.
 ``` javascript
-CREATE  TABLE IF NOT EXISTS `snakesandladders`.`game_results` (`GameId` VARCHAR(20) NOT NULL ,`Date` VARCHAR(20) NULL ,`Winner` VARCHAR(20) NULL ,PRIMARY KEY (`GameId`) )
+log4j.appender.sql.URL=
+log4j.appender.sql.driver=
+log4j.appender.sql.user=
+log4j.appender.sql.password=
 ```
-
-``` javascript
-CREATE  TABLE IF NOT EXISTS `snakesandladders`.`game_details` ( `GameId` VARCHAR(20) NOT NULL ,`PlayerName` VARCHAR(20) NULL ,`Position` VARCHAR(20) NULL ,INDEX `GameId` (`GameId` ASC) , CONSTRAINT `GameId` FOREIGN KEY (`GameId` ) REFERENCES `snakesandladders`.`game_results` (`GameId` ) ON DELETE CASCADE ON UPDATE CASCADE)
-```
-	
 		
 Game is verified on *Java version 7 and JDK1.7*.
 
