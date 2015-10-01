@@ -7,37 +7,41 @@ import java.util.Properties;
 import java.sql.SQLException;
 
 import org.apache.commons.dbcp.BasicDataSource;
+import org.apache.log4j.Logger;
 
-public class DBConnection {
+public class DbConnection {
 
-	private static DBConnection dbConnection;
-	private BasicDataSource ds;
-	private static final String dbDriverClass = "dbDriverClass";
-	private static final String dbUser = "dbUser";
-	private static final String dbPassword = "dbPassword";
-	private static final String dataBaseURL = "databaseURL";
+	private static DbConnection dbConnection;
+	private BasicDataSource dataSource;
+	private static final String DRIVER_CLASS = "db_driver";
+	private static final String USER = "db_user";
+	private static final String PASSWORD = "db_password";
+	private static final String URL = "db_url";
+	private static Logger log = Logger.getLogger(DbInventoryImp.class);
 
-	private DBConnection() throws SQLException {
+	private DbConnection() throws IOException  {
 		Properties prop = new Properties();
 		String fileName = "dbproperties.config";
 		InputStream input = null;
 		input = getClass().getClassLoader().getResourceAsStream(fileName);
 		try {
 			prop.load(input);
-			ds = new BasicDataSource();
-			ds.setDriverClassName(prop.getProperty(dbDriverClass));
-			ds.setUsername(prop.getProperty(dbUser));
-			ds.setPassword(prop.getProperty(dbPassword));
-			ds.setUrl(prop.getProperty(dataBaseURL));
+			dataSource = new BasicDataSource();
+			dataSource.setDriverClassName(prop.getProperty(DRIVER_CLASS));
+			dataSource.setUsername(prop.getProperty(USER));
+			dataSource.setPassword(prop.getProperty(PASSWORD));
+			dataSource.setUrl(prop.getProperty(URL));
 			input.close();
 		} catch (IOException e) {
-			System.out.println("Specified file doesn't exist");
+			log.error("Failed to extract data from file: " + e);
+			throw new IOException(e);
 		}
+		
 	}
 
-	public static DBConnection getInstance() throws SQLException {
+	public static DbConnection getInstance() throws IOException  {
 		if (dbConnection == null) {
-			dbConnection = new DBConnection();
+			dbConnection = new DbConnection();
 			return dbConnection;
 		} else {
 			return dbConnection;
@@ -45,6 +49,6 @@ public class DBConnection {
 	}
 
 	public Connection getConnection() throws SQLException {
-		return this.ds.getConnection();
+		return this.dataSource.getConnection();
 	}
 }

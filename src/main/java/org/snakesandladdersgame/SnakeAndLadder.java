@@ -1,5 +1,8 @@
 package org.snakesandladdersgame;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 /**
  * Snakes and Ladders Game
  * @Description
@@ -24,13 +27,15 @@ public class SnakeAndLadder {
 	private Inventory gameResults;
 
 	public SnakeAndLadder() {
-		gameResults = new DBInventoryImp();
+		gameResults = new DbInventoryImp();
 	}
 
 	/**
 	 * @return list of game results
+	 * @throws SQLException 
+	 * @throws IOException 
 	 */
-	public List<GameResults> allGamesResults() {
+	public List<GameResults> allGamesResults() throws SQLException, IOException {
 		return gameResults.allGameResults();
 
 	}
@@ -38,8 +43,10 @@ public class SnakeAndLadder {
 	/**
 	 * @param gameId
 	 * @return list of input gameId details with player name and position.
+	 * @throws SQLException 
+	 * @throws IOException 
 	 */
-	public List<Player> gameDetails(String gameId) {
+	public List<Player> gameDetails(String gameId) throws SQLException, IOException {
 
 		return gameResults.gameResultDetails(gameId);
 
@@ -66,8 +73,10 @@ public class SnakeAndLadder {
 	 * This method is responsible for starting the game and setting the total
 	 * players list. It will also call the game board and send the final results
 	 * to database.
+	 * @throws SQLException 
+	 * @throws IOException 
 	 */
-	public void startGame(int totalPlayers) {
+	public void startGame(int totalPlayers) throws SQLException, IOException {
 		if (totalPlayers < 2) { // Stop game if total players is less than 2.
 			System.out.println("Please enter more than 1 player.");
 			System.exit(-1);
@@ -78,7 +87,7 @@ public class SnakeAndLadder {
 		gameResults.save(playerList);
 	}
 
-	public static void main(String args[]) {
+	public static void main(String args[]) throws SQLException, IOException {
 		SnakeAndLadder snakeAndLadder = new SnakeAndLadder();
 		DisplayResults display = new DisplayResults();
 		Scanner input = new Scanner(System.in);

@@ -6,7 +6,7 @@ public class Game {
 
 	private static Snake snakePosition;
 	private static Ladder ladderPosition;
-	private static final int totalPos = 100; // Declaring total board size to
+	private static final int TOTAL_BOARD_SIZE = 100; // Declaring total board size to
 												// 100.
 
 	public Game() {
@@ -22,12 +22,12 @@ public class Game {
 			int rollDieScore = dice.roll(); // gets dice score
 			Player player = playerList.get(playerTurn);
 			int totalScore = player.getPosition() + rollDieScore;
-			if (totalScore == totalPos) {
+			if (totalScore == TOTAL_BOARD_SIZE) {
 				// Checks if player reached maximum board size.
 
 				player.setPosition(totalScore);
 				break;
-			} else if (totalScore > totalPos) {
+			} else if (totalScore > TOTAL_BOARD_SIZE) {
 				// Checks if player's location if greater then a 100.
 				// Subtract userRoll from the player position to get back old
 				// position.

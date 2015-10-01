@@ -64,12 +64,11 @@ public class ClientTest {
 		playerList2.put(3, player6);
 		playerList2.put(4, player7);
 		inventory.save(playerList2);
-		assertEquals(inventory.allGameResults().get(0).getWinnerName(),
-				"name3");
-		String[] game1={"name1","name2","name3"};
+		assertEquals(inventory.allGameResults().get(0).getWinnerName(), "name3");
+		String[] game1 = { "name1", "name2", "name3" };
 		assertTrue(Arrays.asList(game1).contains(inventory.gameResultDetails("Game1").get(0).getName()));
 		assertFalse(inventory.gameResultDetails("Game1").get(0).getName().equals("name5"));
-		
+
 		inventory.delete("Game2");
 		assertEquals(inventory.allGameResults().size(), 1);
 	}
@@ -77,10 +76,8 @@ public class ClientTest {
 	@Test
 	public void gameResultsModelTest() throws Exception {
 		CurrentDate date = new CurrentDate();
-		GameResults gameresult1 = new GameResults("Game1", date.getDate(),
-				"name1");
-		GameResults gameresult2 = new GameResults("Game2", date.getDate(),
-				"name2");
+		GameResults gameresult1 = new GameResults("Game1", date.getDate(), "name1");
+		GameResults gameresult2 = new GameResults("Game2", date.getDate(), "name2");
 		assertEquals(gameresult1.getGameId(), "Game1");
 		assertFalse(gameresult2.getWinnerName().equals("name1"));
 	}
@@ -110,21 +107,16 @@ public class ClientTest {
 		Game game = new Game();
 		game.board(playerList);
 		assertEquals(playerList.size(), 3);
-		assertTrue(playerList.get(0).getPosition() == 100
-				|| playerList.get(1).getPosition() == 100
+		assertTrue(playerList.get(0).getPosition() == 100 || playerList.get(1).getPosition() == 100
 				|| playerList.get(2).getPosition() == 100);
-		assertFalse(playerList.get(0).getPosition() == 100
-				&& playerList.get(1).getPosition() == 100
+		assertFalse(playerList.get(0).getPosition() == 100 && playerList.get(1).getPosition() == 100
 				&& playerList.get(2).getPosition() == 100);
-		assertFalse(playerList.get(0).getPosition() == 100
-				&& playerList.get(1).getPosition() == 100);
-		assertFalse(playerList.get(0).getPosition() == 100
-				&& playerList.get(2).getPosition() == 100);
-		assertFalse(playerList.get(1).getPosition() == 100
-				&& playerList.get(2).getPosition() == 100);
+		assertFalse(playerList.get(0).getPosition() == 100 && playerList.get(1).getPosition() == 100);
+		assertFalse(playerList.get(0).getPosition() == 100 && playerList.get(2).getPosition() == 100);
+		assertFalse(playerList.get(1).getPosition() == 100 && playerList.get(2).getPosition() == 100);
 
 	}
-	
+
 	@Test
 	public void dbInventoryImpTest() throws Exception {
 		Player player1 = new Player(10, "name1");
@@ -134,7 +126,7 @@ public class ClientTest {
 		playerList.put(1, player1);
 		playerList.put(2, player2);
 		playerList.put(3, player3);
-		Inventory inventory = new DBInventoryImp();
+		Inventory inventory = new DbInventoryImp();
 		inventory.save(playerList);
 		Player player4 = new Player(40, "name1");
 		Player player5 = new Player(100, "name2");
@@ -146,11 +138,10 @@ public class ClientTest {
 		playerList2.put(3, player6);
 		playerList2.put(4, player7);
 		inventory.save(playerList2);
-		assertEquals(inventory.allGameResults().get(0).getWinnerName(),
-				"name3");
-		String[] game1={"name1","name2","name3"};
+		assertEquals(inventory.allGameResults().get(0).getWinnerName(), "name3");
+		String[] game1 = { "name1", "name2", "name3" };
 		assertTrue(Arrays.asList(game1).contains(inventory.gameResultDetails("Game1").get(0).getName()));
 		assertFalse(inventory.gameResultDetails("Game1").get(0).getName().equals("name5"));
-		
+
 	}
 }
