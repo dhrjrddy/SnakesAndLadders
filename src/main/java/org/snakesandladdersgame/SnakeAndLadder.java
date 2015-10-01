@@ -24,7 +24,7 @@ public class SnakeAndLadder {
 
 	private static Map<Integer, Player> playerList; // Contains all players and
 													// their positions.
-	private Inventory gameResults;
+	private static Inventory gameResults;
 
 	public SnakeAndLadder() {
 		gameResults = new DbInventoryImp();
