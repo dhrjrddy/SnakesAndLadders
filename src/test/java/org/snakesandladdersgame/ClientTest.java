@@ -52,7 +52,7 @@ public class ClientTest {
 		playerList.put(1, player1);
 		playerList.put(2, player2);
 		playerList.put(3, player3);
-		Inventory inventory = new InventoryImp();
+		Repository inventory = new RepositoryImp();
 		inventory.save(playerList);
 		Player player4 = new Player(40, "name1");
 		Player player5 = new Player(100, "name2");
@@ -126,7 +126,7 @@ public class ClientTest {
 		playerList.put(1, player1);
 		playerList.put(2, player2);
 		playerList.put(3, player3);
-		Inventory inventory = new DbInventoryImp();
+		Repository inventory = new DbRepositoryImp();
 		inventory.save(playerList);
 		Player player4 = new Player(40, "name1");
 		Player player5 = new Player(100, "name2");

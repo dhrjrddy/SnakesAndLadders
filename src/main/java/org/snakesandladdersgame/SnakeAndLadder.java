@@ -24,10 +24,10 @@ public class SnakeAndLadder {
 
 	private static Map<Integer, Player> playerList; // Contains all players and
 													// their positions.
-	private static Inventory gameResults;
+	private static Repository gameResults;
 
 	public SnakeAndLadder() {
-		gameResults = new DbInventoryImp();
+		gameResults = new DbRepositoryImp();
 	}
 
 	/**
@@ -35,7 +35,7 @@ public class SnakeAndLadder {
 	 * @throws SQLException
 	 * @throws IOException
 	 */
-	public List<GameResults> allGamesResults() throws SQLException, IOException {
+	public List<GameResults> allGamesResults() {
 		return gameResults.allGameResults();
 
 	}
@@ -46,7 +46,7 @@ public class SnakeAndLadder {
 	 * @throws SQLException
 	 * @throws IOException
 	 */
-	public List<Player> gameDetails(String gameId) throws SQLException, IOException {
+	public List<Player> gameDetails(String gameId) {
 
 		return gameResults.gameResultDetails(gameId);
 
@@ -77,10 +77,10 @@ public class SnakeAndLadder {
 	 * @throws SQLException
 	 * @throws IOException
 	 */
-	public void startGame(int totalPlayers) throws SQLException, IOException {
-		if (totalPlayers < 2) { // Stop game if total players is less than 2.
+	public void startGame(int totalPlayers) {
+		if (totalPlayers < 2) { // Check if total players is less than 2.
 			System.out.println("Please enter more than 1 player.");
-			System.exit(-1);
+			return;
 		}
 		createMultiplePlayers(totalPlayers);
 		Game game = new Game();
@@ -88,7 +88,7 @@ public class SnakeAndLadder {
 		gameResults.save(playerList);
 	}
 
-	public static void main(String args[]) throws SQLException, IOException {
+	public static void main(String args[]) {
 		SnakeAndLadder snakeAndLadder = new SnakeAndLadder();
 		DisplayResults display = new DisplayResults();
 		Scanner input = new Scanner(System.in);
@@ -113,10 +113,8 @@ public class SnakeAndLadder {
 				System.out.println("Enter game id...");
 				display.showGameDetails(snakeAndLadder.gameDetails(input.next()));
 				break;
-			default:
-				System.exit(1);
 			}
-		} while (true);
+		} while (userChoice == 1 || userChoice == 2 || userChoice == 3);
 
 	}
 

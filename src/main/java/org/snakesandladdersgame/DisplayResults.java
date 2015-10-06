@@ -39,9 +39,11 @@ public class DisplayResults {
 	 * @param playerList
 	 */
 	public void showWinner(Map<Integer, Player> playerList) {
-		for (Integer key : playerList.keySet()) {
-			if (playerList.get(key).getPosition() == 100) {
-				System.out.println(playerList.get(key).getName() + " is the Winner.");
+		if (playerList != null) {
+			for (Integer key : playerList.keySet()) {
+				if (playerList.get(key).getPosition() == 100) {
+					System.out.println(playerList.get(key).getName() + " is the Winner.");
+				}
 			}
 		}
 	}
