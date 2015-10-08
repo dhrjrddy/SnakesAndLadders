@@ -132,7 +132,7 @@ public class DbRepositoryImp implements Repository {
 				connection.close();
 			} catch (SQLException e) {
 				log.error("Cannot close connection" + e);
-				throw new RuntimeException("Cannot close connection" + e);
+				throw new CustomRuntimeException("Cannot close connection" + e);
 			}
 		}
 	}

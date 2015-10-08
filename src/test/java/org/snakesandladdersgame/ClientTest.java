@@ -44,7 +44,7 @@ public class ClientTest {
 	}
 
 	@Test
-	public void inventoryImpTest() throws Exception {
+	public void RepositoryImpTest() throws Exception {
 		Player player1 = new Player(10, "name1");
 		Player player2 = new Player(40, "name2");
 		Player player3 = new Player(100, "name3");
@@ -118,7 +118,7 @@ public class ClientTest {
 	}
 
 	@Test
-	public void dbInventoryImpTest() throws Exception {
+	public void dbRepositoryImpTest() throws Exception {
 		Player player1 = new Player(10, "name1");
 		Player player2 = new Player(40, "name2");
 		Player player3 = new Player(100, "name3");

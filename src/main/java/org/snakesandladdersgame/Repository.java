@@ -1,8 +1,6 @@
 package org.snakesandladdersgame;
 
 import java.util.Map;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 public interface Repository {
@@ -12,8 +10,6 @@ public interface Repository {
 	 * positions in hash map.
 	 * 
 	 * @param playerList
-	 * @throws SQLException
-	 * @throws IOException
 	 */
 	public void save(Map<Integer, Player> playerList);
 
@@ -21,8 +17,6 @@ public interface Repository {
 	 * This method takes gameId as input and delete the game details.
 	 * 
 	 * @param gameId
-	 * @throws SQLException
-	 * @throws IOException
 	 */
 	public void delete(String gameId);
 
@@ -31,8 +25,6 @@ public interface Repository {
 	 * when the game is played and winner of game.
 	 * 
 	 * @return all games and their results.
-	 * @throws SQLException
-	 * @throws IOException
 	 */
 	public List<GameResults> allGameResults();
 
@@ -41,8 +33,6 @@ public interface Repository {
 	 * 
 	 * @param gameId
 	 * @return gameId detailed results.
-	 * @throws SQLException
-	 * @throws IOException
 	 */
 	public List<Player> gameResultDetails(String gameId);
 }

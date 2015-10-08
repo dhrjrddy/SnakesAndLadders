@@ -1,7 +1,5 @@
 package org.snakesandladdersgame;
 
-import java.io.IOException;
-import java.sql.SQLException;
 
 /**
  * Snakes and Ladders Game
@@ -32,8 +30,6 @@ public class SnakeAndLadder {
 
 	/**
 	 * @return list of game results
-	 * @throws SQLException
-	 * @throws IOException
 	 */
 	public List<GameResults> allGamesResults() {
 		return gameResults.allGameResults();
@@ -43,8 +39,6 @@ public class SnakeAndLadder {
 	/**
 	 * @param gameId
 	 * @return list of input gameId details with player name and position.
-	 * @throws SQLException
-	 * @throws IOException
 	 */
 	public List<Player> gameDetails(String gameId) {
 
@@ -74,8 +68,6 @@ public class SnakeAndLadder {
 	 * players list. It will also call the game board and send the final results
 	 * to database.
 	 * 
-	 * @throws SQLException
-	 * @throws IOException
 	 */
 	public void startGame(int totalPlayers) {
 		if (totalPlayers < 2) { // Check if total players is less than 2.
